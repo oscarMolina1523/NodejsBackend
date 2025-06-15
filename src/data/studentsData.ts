@@ -1,1 +1,7 @@
-export let students = [{name: "John Doe", age: 20}, {name: "Jane Smith", age: 22}];
+import { Student } from "../models/Student";
+
+export let students:[Student];
+
+students =[
+    {fullName: "Alice Rodger", age: 20, grade: "First Grade", gender:"Female"},
+]
