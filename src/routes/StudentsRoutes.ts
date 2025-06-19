@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllStudents } from "../controllers/StudentsController";
+import { getAllStudents, getAStudentById } from "../controllers/StudentsController";
 
 const router = express.Router();
 
@@ -63,5 +63,7 @@ const router = express.Router();
  */
 
 router.get("/students", getAllStudents);
+
+router.get("/students/:id", getAStudentById);
 
 export default router;
