@@ -3,6 +3,7 @@ import {
   getStudents,
   getStudentById,
   addStudent,
+  updateStudent
 } from "../services/StudentsService";
 import { Request, Response } from "express";
 import { generateId } from "../utils/GenerateId";
@@ -42,7 +43,13 @@ export const addAStudent = (req: Request, res: Response) => {
   }
 };
 
-// export const updateAStudent = (req: Request, res: Response) => {
-//     const studentId = req.params.id;
-//     const updatedStudent: Student = req.body;
-// };
+export const updateAStudent = (req: Request, res: Response) => {
+    const studentId = req.params.id;
+    const updatedStudent: StudentDTO = req.body;
+    const response = updateStudent(studentId, updatedStudent);
+    if (response.success) {
+      res.status(200).json({ message: response.message });
+    } else {
+      res.status(404).json({ message: response.message });
+    }
+};
