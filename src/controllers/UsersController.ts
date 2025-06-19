@@ -1,5 +1,7 @@
+import { User } from './../models/User';
 import { Response, Request } from "express";
 import UserService from "../services/UserService";
+import { generateId } from '../utils/GenerateId';
 
 export default class UsersController {
     private service : UserService;
@@ -20,6 +22,20 @@ export default class UsersController {
             res.status(200).json(user);
         } else {
             res.status(404).json({ message: "User not found" });
+        }
+    }
+
+    addUser=(req: Request, res: Response) => {
+        const userData= req.body;
+        const completeUser={
+            ...userData,
+            id: generateId() 
+        }
+        const newUser = this.service.addUser(completeUser);
+        if (newUser) {
+            res.status(201).json(newUser);
+        } else {
+            res.status(400).json({ message: "Failed to add user" });
         }
     }
 }
