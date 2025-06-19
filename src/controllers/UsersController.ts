@@ -38,4 +38,15 @@ export default class UsersController {
             res.status(400).json({ message: "Failed to add user" });
         }
     }
+
+    updateUser=(req: Request, res: Response) => {
+        const userId = req.params.id;
+        const updatedData = req.body;
+        const result = this.service.updateUser(userId, updatedData);
+        if (result.success) {
+            res.status(200).json({ message: result.message });
+        } else {
+            res.status(404).json({ message: result.message });
+        }
+    }
 }
