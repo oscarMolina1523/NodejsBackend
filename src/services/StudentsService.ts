@@ -6,3 +6,7 @@ export const getStudents = (): Student[] => students;
 export const getStudentById = (id: string): Student | undefined => {
   return students.find((student) => student.id === id);
 };
+
+export const addStudent = (student : Student): void =>{
+    students.push(student);
+}
