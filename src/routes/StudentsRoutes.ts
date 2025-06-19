@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllStudents, getAStudentById } from "../controllers/StudentsController";
+import { getAllStudents, getAStudentById, addAStudent } from "../controllers/StudentsController";
 
 const router = express.Router();
 
@@ -65,5 +65,7 @@ const router = express.Router();
 router.get("/students", getAllStudents);
 
 router.get("/students/:id", getAStudentById);
+
+router.post("/students", addAStudent);
 
 export default router;
