@@ -1,10 +1,11 @@
-import { Student } from "../models/Student";
+import { Student, StudentDTO } from "../models/Student";
 import {
   getStudents,
   getStudentById,
   addStudent,
 } from "../services/StudentsService";
 import { Request, Response } from "express";
+import { generateId } from "../utils/GenerateId";
 
 export const getAllStudents = (req: Request, res: Response) => {
   const students: Student[] = getStudents();
@@ -22,8 +23,15 @@ export const getAStudentById = (req: Request, res: Response) => {
 };
 
 export const addAStudent = (req: Request, res: Response) => {
-  const newStudent: Student = req.body;
-  const result = addStudent(newStudent);
+  const newStudent: StudentDTO = req.body;
+  const completeStudent: Student = {
+    id: generateId(),
+    fullName: newStudent.fullName,
+    age: newStudent.age,
+    gender: newStudent.gender,
+    grade: newStudent.grade,
+  }
+  const result = addStudent(completeStudent);
   if (result) {
     res
       .status(201)
@@ -33,3 +41,8 @@ export const addAStudent = (req: Request, res: Response) => {
     res.status(400).json({ message: "Failed to add student" });
   }
 };
+
+// export const updateAStudent = (req: Request, res: Response) => {
+//     const studentId = req.params.id;
+//     const updatedStudent: Student = req.body;
+// };
