@@ -13,7 +13,15 @@ export class GenericCrudService<T extends BaseModel> {
 
   //this method return the array of data
   //it is used to get all the data
-  getAll(){
+  getAll():T[]{
     return this.data;
+  }
+
+  getById=(id: string): T | undefined => {
+    const item= this.data.find((item) => item.id ==id);
+    if (!item) {
+    throw new Error(`Entity with id ${id} not found`);
+    }
+    return item;
   }
 }
