@@ -49,4 +49,14 @@ export default class UsersController {
             res.status(404).json({ message: result.message });
         }
     }
+
+    deleteUser=(req: Request, res: Response) => {
+        const userId = req.params.id;
+        const result = this.service.deleteUser(userId);
+        if (result.success) {
+            res.status(200).json({ message: result.message });
+        } else {
+            res.status(404).json({ message: result.message });
+        }
+    }
 }
