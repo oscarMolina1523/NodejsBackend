@@ -42,6 +42,32 @@ const router = express.Router();
  *         age: 10
  *         grade: First Grade
  *         gender: male
+ *
+ *     StudentDTO:
+ *       type: object
+ *       required:
+ *         - fullName
+ *         - age
+ *         - grade
+ *         - gender
+ *       properties:
+ *         fullName:
+ *           type: string
+ *           description: The full name of the student
+ *         age:
+ *           type: integer
+ *           description: The age of the student
+ *         grade:
+ *           type: string
+ *           description: The grade of the student
+ *         gender:
+ *           type: string
+ *           description: The gender of the student
+ *       example:
+ *         fullName: Ted Junior Rodgers
+ *         age: 10
+ *         grade: First Grade
+ *         gender: male
  */
 
 /**
@@ -105,7 +131,7 @@ router.get("/students/:id", getAStudentById);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Student'
+ *             $ref: '#/components/schemas/StudentDTO'
  *     responses:
  *       201:
  *         description: Student created successfully
@@ -132,7 +158,7 @@ router.post("/students", addAStudent);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Student'
+ *             $ref: '#/components/schemas/StudentDTO'
  *     responses:
  *       200:
  *         description: Student updated successfully
