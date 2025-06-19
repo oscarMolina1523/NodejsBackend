@@ -12,4 +12,14 @@ export default class UsersController {
         const users= this.service.getAllUsers();
         res.status(200).json(users);
     }
+
+    getUserById=(req: Request, res: Response) => {
+        const userId = req.params.id;
+        const user = this.service.getUserById(userId);
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            res.status(404).json({ message: "User not found" });
+        }
+    }
 }
