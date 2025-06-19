@@ -54,7 +54,7 @@ export const deleteStudent = (
     students.splice(student, 1);
     return {
       success: true,
-      message: "Student updated successfully",
+      message: "Student deleted successfully",
     };
   } else {
     return {
