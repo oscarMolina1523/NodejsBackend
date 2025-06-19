@@ -14,16 +14,19 @@ export const getStudentById = (id: string): Student | undefined => {
 
 //we add a new student to the array of students
 export const addStudent = (student: Student): boolean => {
-  try{
+  try {
     students.push(student);
     return true;
-  }catch{
+  } catch {
     return false;
   }
 };
 
 //we update an existing student in the array of students
-export const updateStudent = (id: string, updatedStudent: StudentDTO):{ success: boolean; message: string } => {
+export const updateStudent = (
+  id: string,
+  updatedStudent: StudentDTO
+): { success: boolean; message: string } => {
   const student = students.find((student) => student.id === id);
   if (student) {
     student.fullName = updatedStudent.fullName;
@@ -43,11 +46,20 @@ export const updateStudent = (id: string, updatedStudent: StudentDTO):{ success:
 };
 
 //we delete a student using the id
-export const deleteStudent = (id: string): void => {
+export const deleteStudent = (
+  id: string
+): { success: boolean; message: string } => {
   const student = students.findIndex((student) => student.id === id);
   if (student !== -1) {
     students.splice(student, 1);
+    return {
+      success: true,
+      message: "Student deleted successfully",
+    };
   } else {
-    throw new Error(`Student with id ${id} not found`);
+    return {
+      success: false,
+      message: `Student with id ${id} not found`,
+    };
   }
 };

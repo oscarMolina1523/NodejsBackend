@@ -1,5 +1,11 @@
 import express from "express";
-import { getAllStudents } from "../controllers/StudentsController";
+import {
+  getAllStudents,
+  getAStudentById,
+  addAStudent,
+  updateAStudent,
+  deleteAStudent,
+} from "../controllers/StudentsController";
 
 const router = express.Router();
 
@@ -26,7 +32,7 @@ const router = express.Router();
  *           description: The age of the student
  *         grade:
  *           type: string
- *           description: The id grade of the student
+ *           description: The grade of the student
  *         gender:
  *           type: string
  *           description: The gender of the student
@@ -34,7 +40,33 @@ const router = express.Router();
  *         id: kskbVGJV4G6T
  *         fullName: Ted Junior Rodgers
  *         age: 10
- *         grade: khabckGCJVgc6
+ *         grade: First Grade
+ *         gender: male
+ *
+ *     StudentDTO:
+ *       type: object
+ *       required:
+ *         - fullName
+ *         - age
+ *         - grade
+ *         - gender
+ *       properties:
+ *         fullName:
+ *           type: string
+ *           description: The full name of the student
+ *         age:
+ *           type: integer
+ *           description: The age of the student
+ *         grade:
+ *           type: string
+ *           description: The grade of the student
+ *         gender:
+ *           type: string
+ *           description: The gender of the student
+ *       example:
+ *         fullName: Ted Junior Rodgers
+ *         age: 10
+ *         grade: First Grade
  *         gender: male
  */
 
@@ -61,7 +93,99 @@ const router = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/Student'
  */
-
 router.get("/students", getAllStudents);
+
+/**
+ * @swagger
+ * /students/{id}:
+ *   get:
+ *     summary: Get a student by ID
+ *     tags: [Students]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The student ID
+ *     responses:
+ *       200:
+ *         description: The student data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Student'
+ *       404:
+ *         description: Student not found
+ */
+router.get("/students/:id", getAStudentById);
+
+/**
+ * @swagger
+ * /students:
+ *   post:
+ *     summary: Add a new student
+ *     tags: [Students]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/StudentDTO'
+ *     responses:
+ *       201:
+ *         description: Student created successfully
+ *       400:
+ *         description: Invalid input
+ */
+router.post("/students", addAStudent);
+
+/**
+ * @swagger
+ * /students/{id}:
+ *   put:
+ *     summary: Update an existing student
+ *     tags: [Students]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The student ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/StudentDTO'
+ *     responses:
+ *       200:
+ *         description: Student updated successfully
+ *       404:
+ *         description: Student not found
+ */
+router.put("/students/:id", updateAStudent);
+
+/**
+ * @swagger
+ * /students/{id}:
+ *   delete:
+ *     summary: Delete a student by ID
+ *     tags: [Students]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The student ID
+ *     responses:
+ *       200:
+ *         description: Student deleted successfully
+ *       404:
+ *         description: Student not found
+ */
+router.delete("/students/:id", deleteAStudent);
 
 export default router;
