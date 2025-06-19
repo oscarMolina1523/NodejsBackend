@@ -1,7 +1,5 @@
-export interface Student {
-    id: string;
-    fullName: string;
-    age: number;
-    grade: string;
-    gender: string;
-}
+import { BaseModel, BaseStudent } from "./BaseModel";
+
+export interface Student extends BaseModel, BaseStudent{};
+
+export interface StudentDTO extends BaseStudent{};
