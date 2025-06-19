@@ -48,4 +48,18 @@ export class GenericCrudService<T extends BaseModel> {
     }
     return { success: false, message: `Entity with id ${id} not found` };
   }
+
+  //this method receives an id and search in the array by index , if index exists, it deletes the item
+  delete(id: string): { success: boolean; message: string } {
+    const item = this.data.findIndex((item) => item.id === id);
+    if(item !== -1) {
+      this.data.splice(item, 1);
+      return { success: true, message: "Entity deleted successfully" };
+    }else {
+    return {
+      success: false,
+      message: `Entity with id ${id} not found`,
+    };
+  }
+  }
 }
