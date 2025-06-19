@@ -17,6 +17,8 @@ export class GenericCrudService<T extends BaseModel> {
     return this.data;
   }
 
+  //this method recieves an id and send the specific item
+  //if the item is not found, it throws an error
   getById=(id: string): T | undefined => {
     const item= this.data.find((item) => item.id ==id);
     if (!item) {
