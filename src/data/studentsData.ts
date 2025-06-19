@@ -1,8 +1,8 @@
 import { Student } from "../models/Student";
 
-export let students: Student[];
+export let studentsData: Student[];
 
-students = [
+studentsData = [
   { id: "ghavgjVJVHVG76", fullName: "Alice Rodger", age: 20, grade: "First Grade", gender: "Female" },
   { id: "a1b2c3d4e5f6g7h8", fullName: "Michael Johnson", age: 19, grade: "Second Grade", gender: "Male" },
   { id: "i9j8k7l6m5n4o3p2", fullName: "Sarah Thompson", age: 21, grade: "Third Grade", gender: "Female" },
