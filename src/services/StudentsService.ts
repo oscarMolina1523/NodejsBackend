@@ -13,8 +13,13 @@ export const getStudentById = (id: string): Student | undefined => {
 };
 
 //we add a new student to the array of students
-export const addStudent = (student: Student): void => {
-  students.push(student);
+export const addStudent = (student: Student): boolean => {
+  try{
+    students.push(student);
+    return true;
+  }catch{
+    return false;
+  }
 };
 
 //we update an existing student in the array of students
