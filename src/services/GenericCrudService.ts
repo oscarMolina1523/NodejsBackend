@@ -10,4 +10,10 @@ export class GenericCrudService<T extends BaseModel> {
   constructor(initialData: T[] = []) {
     this.data = initialData;
   }
+
+  //this method return the array of data
+  //it is used to get all the data
+  getAll(){
+    return this.data;
+  }
 }
