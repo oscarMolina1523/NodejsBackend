@@ -116,7 +116,7 @@ router.get("/:id", studentController.getAStudentById);
 
 /**
  * @swagger
- * /students:
+ * /:
  *   post:
  *     summary: Add a new student
  *     tags: [Students]
@@ -136,7 +136,7 @@ router.post("/", studentController.addAStudent);
 
 /**
  * @swagger
- * /students/{id}:
+ * /{id}:
  *   put:
  *     summary: Update an existing student
  *     tags: [Students]
@@ -163,7 +163,7 @@ router.put("/:id", studentController.updateAStudent);
 
 /**
  * @swagger
- * /students/{id}:
+ * /{id}:
  *   delete:
  *     summary: Delete a student by ID
  *     tags: [Students]

@@ -93,6 +93,30 @@ const userController = new UsersController();
  *                 $ref: '#/components/schemas/User'
  */
 router.get("/", userController.getAllUsers);
+
+/**
+ * @swagger
+ * /users/{id}:
+ *   get:
+ *     summary: Get a User by ID
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The User ID
+ *     responses:
+ *       200:
+ *         description: The User data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       404:
+ *         description: User not found
+ */
 router.get("/:id", userController.getUserById);
 router.post("/", userController.addUser);
 router.put("/:id", userController.updateUser);
