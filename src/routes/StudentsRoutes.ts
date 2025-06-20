@@ -1,13 +1,7 @@
 import express from "express";
-import {
-  getAllStudents,
-  getAStudentById,
-  addAStudent,
-  updateAStudent,
-  deleteAStudent,
-} from "../controllers/StudentsController";
-
+import StudentsController from "../controllers/StudentsController";
 const router = express.Router();
+const studentController = new StudentsController();
 
 /**
  * @swagger
@@ -93,7 +87,7 @@ const router = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/Student'
  */
-router.get("/students", getAllStudents);
+router.get("/", studentController.getAllStudents);
 
 /**
  * @swagger
@@ -118,11 +112,11 @@ router.get("/students", getAllStudents);
  *       404:
  *         description: Student not found
  */
-router.get("/students/:id", getAStudentById);
+router.get("/:id", studentController.getAStudentById);
 
 /**
  * @swagger
- * /students:
+ * /:
  *   post:
  *     summary: Add a new student
  *     tags: [Students]
@@ -138,11 +132,11 @@ router.get("/students/:id", getAStudentById);
  *       400:
  *         description: Invalid input
  */
-router.post("/students", addAStudent);
+router.post("/", studentController.addAStudent);
 
 /**
  * @swagger
- * /students/{id}:
+ * /{id}:
  *   put:
  *     summary: Update an existing student
  *     tags: [Students]
@@ -165,11 +159,11 @@ router.post("/students", addAStudent);
  *       404:
  *         description: Student not found
  */
-router.put("/students/:id", updateAStudent);
+router.put("/:id", studentController.updateAStudent);
 
 /**
  * @swagger
- * /students/{id}:
+ * /{id}:
  *   delete:
  *     summary: Delete a student by ID
  *     tags: [Students]
@@ -186,6 +180,6 @@ router.put("/students/:id", updateAStudent);
  *       404:
  *         description: Student not found
  */
-router.delete("/students/:id", deleteAStudent);
+router.delete("/:id", studentController.deleteAStudent);
 
 export default router;

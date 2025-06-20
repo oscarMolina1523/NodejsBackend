@@ -8,3 +8,10 @@ export interface BaseStudent {
   grade: string;
   gender: string;
 }
+
+export interface BaseUser {
+  fullName: string;
+  email: string;
+  password: string;
+  role: string;
+}
