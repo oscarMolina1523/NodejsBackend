@@ -87,7 +87,7 @@ const studentController = new StudentsController();
  *               items:
  *                 $ref: '#/components/schemas/Student'
  */
-router.get("/students", studentController.getAllStudents);
+router.get("/", studentController.getAllStudents);
 
 /**
  * @swagger
@@ -112,7 +112,7 @@ router.get("/students", studentController.getAllStudents);
  *       404:
  *         description: Student not found
  */
-router.get("/students/:id", studentController.getAStudentById);
+router.get("/:id", studentController.getAStudentById);
 
 /**
  * @swagger
@@ -132,7 +132,7 @@ router.get("/students/:id", studentController.getAStudentById);
  *       400:
  *         description: Invalid input
  */
-router.post("/students", studentController.addAStudent);
+router.post("/", studentController.addAStudent);
 
 /**
  * @swagger
@@ -159,7 +159,7 @@ router.post("/students", studentController.addAStudent);
  *       404:
  *         description: Student not found
  */
-router.put("/students/:id", studentController.updateAStudent);
+router.put("/:id", studentController.updateAStudent);
 
 /**
  * @swagger
@@ -180,6 +180,6 @@ router.put("/students/:id", studentController.updateAStudent);
  *       404:
  *         description: Student not found
  */
-router.delete("/students/:id", studentController.deleteAStudent);
+router.delete("/:id", studentController.deleteAStudent);
 
 export default router;
